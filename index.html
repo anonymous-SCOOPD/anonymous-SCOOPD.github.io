@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="SCOOP'D: Learning Mixed-Liquid-Solid Scooping via Sim2Real Generative Policy">
+    <meta name="keywords" content="Robot Scooping, Learning from Demonstrations">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SCOOP'D: Learning Mixed-Liquid-Solid Scooping via Sim2Real Generative Policy</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title">SCOOP'D: Learning Mixed-Liquid-Solid Scooping via Sim2Real Generative Policy</h1>
+
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block">Anonymous Authors</span>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="hero is-light is-small">
+      <div class="hero-body">
+        <div class="container">
+          <div id="results-carousel" class="carousel results-carousel">
+            <div class="item item-coffee">
+              <video poster="" id="coffee" autoplay muted loop playsinline height="100%">
+                <source src="./static/videos/occlusion/ocpp1.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+            <div class="item item-toby">
+              <video poster="" id="toby" autoplay muted loop playsinline height="100%">
+                <source src="./static/videos/teaser/duck_moving2.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+            <div class="item item-toby">
+              <video poster="" id="toby" autoplay muted loop playsinline height="100%">
+                <source src="./static/videos/teaser/mushroom2.mp4"
+                        type="video/mp4">
+              </video> 
+            </div>
+            <div class="item item-toby">
+              <video poster="" id="toby" autoplay muted loop playsinline height="100%">
+                <source src="./static/videos/occlusion/occube1.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+            <div class="item item-toby">
+              <video poster="" id="toby" autoplay muted loop playsinline height="100%">
+                <source src="./static/videos/teaser/liquid1.mp4"
+                        type="video/mp4">
+              </video> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <!-- Abstract. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                Scooping items with tools such as spoons and ladles is common in daily life, ranging from assistive feeding to retrieving items from environmental disaster sites. However, developing a general and autonomous robotic scooping policy is challenging since it requires reasoning about complex tool-object interactions. Furthermore, scooping often involves manipulating deformable objects, such as granular media or liquids, which is challenging due to their infinite-dimensional configuration spaces and complex dynamics. 
+                We propose a method, SCOOP'D, which uses simulation from OmniGibson (built on NVIDIA Omniverse) to collect scooping demonstrations using algorithmic procedures that rely on privileged state information. Then, we use generative policies via diffusion to imitate demonstrations from observational input. 
+                We directly apply the learned policy in diverse real-world scenarios, testing its performance on various unseen item quantities, item characteristics, and container types.   
+                In zero-shot deployment, our method demonstrates promising results across 465 trials in diverse scenarios, including objects of different difficulty levels that we categorize as "Level 1" and "Level 2."
+                SCOOP'D outperforms all baselines and ablations, suggesting that this is a promising approach to acquiring robotic scooping skills.
+                We will post code, data and videos online after acceptance.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!--/ Abstract. -->
+    
+      </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h3 class="title is-3">Our SCOOP'D Method</h3>
+                    <div class="content has-text-justified">
+                        <!-- Add image here -->
+                        <img src="static/images/framework.png" alt="Method" style="max-width: 100%; height: auto; margin-top: 20px;">
+                        <p>
+                          The first row shows the heuristic demonstration collection. Using OmniGibson simulation, we leverage an algorithmic demonstrator for SimScoop dataset collection. 
+                          The second row shows how deployment works. The left part shows how we obtain the state of the target item from text ("meatball"), detection, live video stream segmentation, and regression with the partial point cloud. 
+                          The middle part shows the pipeline of our method. The right part shows the execution. We demonstrate the execution process in both the top and bottom containers, with the states specifically marked in the bottom for extra clarity.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+      <section class="section">
+        <div class="container is-max-desktop">
+      
+          <div class="columns is-centered">
+      
+            <div class="column">
+              <div class="content">
+                <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/SCOOPD.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+            </div>
+           
+          </div>
+        </section>
+
+        
+      
+      <section class="section">
+        <div class="container is-max-desktop">
+          <h3 class="title is-3">Severe Occlusion</h3>
+          <div class="columns is-centered">
+            <!-- Matting. -->
+            <div class="column is-centered">
+              
+              <div class="columns is-centered">
+                <div class="column content">
+                  <video id="occube2" autoplay controls muted loop playsinline height="100%">
+                    <source src="./static/videos/occlusion/occube2.mp4"
+                            type="video/mp4">
+                  </video>
+                  <h3 class="title is-6">Yellow Cube 1</h3>
+                </div>
+      
+              </div>
+            </div>
+
+            <div class="column is-centered">
+                
+                <div class="columns is-centered">
+                <div class="column content">
+                    <video id="occube3" autoplay controls muted loop playsinline height="100%">
+                    <source src="./static/videos/occlusion/occube3.mp4"
+                            type="video/mp4">
+                    </video>
+                    <h3 class="title is-6">Yellow Cube 2</h3>
+                </div>
+        
+                </div>
+            </div>
+
+
+              <!-- Matting. -->
+              <div class="column is-centered">
+                <div class="columns is-centered">
+                  <div class="column content">
+                    <video id="ocpp2" autoplay controls muted loop playsinline height="100%">
+                      <source src="./static/videos/occlusion/ocpp2.mp4"
+                              type="video/mp4">
+                    </video>
+                    <h3 class="title is-6">Yellow PingPongBall 1</h3>
+                  </div>
+        
+                </div>
+              </div>
+  
+              <div class="column is-centered">
+                  <div class="columns is-centered">
+                  <div class="column content">
+                      <video id="ocpp3" autoplay controls muted loop playsinline height="100%">
+                      <source src="./static/videos/occlusion/ocpp3.mp4"
+                              type="video/mp4">
+                      </video>
+                      <h3 class="title is-6">Yellow PingPongBall 2</h3>
+                  </div>
+          
+                  </div>
+              </div>
+  
+            </div>
+          </section>
+  
+
+      <section class="section">
+        <div class="container is-max-desktop">
+          <h3 class="title is-3">Moving objects</h3>
+          <div class="columns is-centered">
+            
+            <!-- Visual Effects. -->
+            <div class="column">
+              <div class="content">
+                <video id="duck_moving1" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/move/duck_moving1.mp4"
+                          type="video/mp4">
+                </video>
+                <h3 class="title is-6">Moving Toy Duck 1</h3>
+              </div>
+            </div>
+            <!--/ Visual Effects. -->
+      
+            <!-- Matting. -->
+            <div class="column is-centered">
+              <div class="columns is-centered">
+                <div class="column content">
+                  <video id="duck_moving2" autoplay controls muted loop playsinline height="100%">
+                    <source src="./static/videos/move/duck_moving2.mp4"
+                            type="video/mp4">
+                  </video>
+                  <h3 class="title is-6">Moving Toy Duck 2</h3>
+                </div>
+      
+              </div>
+            </div>
+
+            <div class="column is-centered">
+                <div class="columns is-centered">
+                <div class="column content">
+                    <video id="pingpong_moving" autoplay controls muted loop playsinline height="100%">
+                    <source src="./static/videos/move/pingpong_moving.mp4"
+                            type="video/mp4">
+                    </video>
+                    <h3 class="title is-6">Moving PingPongBall</h3>
+                </div>
+        
+                </div>
+            </div>
+          </div>
+        </section>
+    
+
+        <section class="section">
+          <div class="container is-max-desktop">
+            <h3 class="title is-3">Multi-object Scooping</h3>
+            <div class="columns is-centered">
+        
+              <!-- Visual Effects. -->
+              <div class="column">
+                <div class="content">
+                  <video id="multicube" autoplay controls muted loop playsinline height="100%">
+                    <source src="./static/videos/multiobj/multicube.mp4"
+                            type="video/mp4">
+                  </video>
+                  <h3 class="title is-6">Multi-Cube</h3>
+                </div>
+              </div>
+              <!--/ Visual Effects. -->
+        
+              <!-- Matting. -->
+              <div class="column is-centered">
+                <div class="columns is-centered">
+                  <div class="column content">
+                    <video id="multimushroom" autoplay controls muted loop playsinline height="100%">
+                      <source src="./static/videos/multiobj/multimushroom.mp4"
+                              type="video/mp4">
+                    </video>
+                    <h3 class="title is-6">Multi-Mushroom</h3>
+                  </div>
+        
+                </div>
+              </div>
+  
+              <div class="column is-centered">
+                  <div class="columns is-centered">
+                  <div class="column content">
+                      <video id="multiball" autoplay controls muted loop playsinline height="100%">
+                      <source src="./static/videos/multiobj/multiball.mp4"
+                              type="video/mp4">
+                      </video>
+                      <h3 class="title is-6">Multi-PingPongBall</h3>
+                  </div>
+          
+                  </div>
+              </div>
+            </div>
+          </section>
+
+
+          <section class="section">
+            <div class="container is-max-desktop">
+              <h3 class="title is-3">Level 2 objects</h3>
+              <div class="columns is-centered">
+          
+                <!-- Visual Effects. -->
+                <div class="column">
+                  <div class="content">
+                    <video id="deformable_cream1" autoplay controls muted loop playsinline height="100%">
+                      <source src="./static/videos/level2/deformable_cream1.mp4"
+                              type="video/mp4">
+                    </video>
+                    <h3 class="title is-6">Deformable Cream 1</h3>
+                  </div>
+                </div>
+                <!--/ Visual Effects. -->
+          
+                <!-- Matting. -->
+                <div class="column is-centered">
+                  <div class="columns is-centered">
+                    <div class="column content">
+                      <video id="deformable_cream1" autoplay controls muted loop playsinline height="100%">
+                        <source src="./static/videos/level2/deformable_cream2.mp4"
+                                type="video/mp4">
+                      </video>
+                      <h3 class="title is-6">Deformable Cream 2</h3>
+                    </div>
+          
+                  </div>
+                </div>
+    
+                <div class="column is-centered">
+                    <div class="columns is-centered">
+                    <div class="column content">
+                        <video id="largecookie" autoplay controls muted loop playsinline height="100%">
+                        <source src="./static/videos/level2/largecookie.mp4"
+                                type="video/mp4">
+                        </video>
+                        <h3 class="title is-6">Large Cookie</h3>
+                    </div>
+            
+                    </div>
+                </div>
+              </div>
+            </section>
+
+            <footer class="footer">
+              <div class="container">
+                  <div class="columns is-centered">
+                      <div class="column is-8">
+                          <div class="content">
+                              <p>
+                                  
+                              </p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </footer>
+
+
+</body>
+
+</html>
